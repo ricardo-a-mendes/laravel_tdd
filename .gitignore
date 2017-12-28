@@ -1,0 +1,6 @@
+/vendor
+/.idea
+/Introduction
+phpunit-6.4.4.phar
+composer.phar
+.DS_Store

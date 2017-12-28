@@ -1,0 +1,30 @@
+version: '3'
+services:
+  php:
+    build:
+      context: .
+    image: laravel_tdd
+    container_name: tdd
+    working_dir: /var/www
+    environment:
+      - DB_HOST=dbserver
+      - DB_DATABASE=tdd
+      - DB_USERNAME=tdd
+      - DB_PASSWORD=tdd
+      - XDEBUG_CONFIG=remote_host=192.168.2.134 remote_enable=1 remote_port=9000 remote_connect_back=0
+      #- XDEBUG_CONFIG=remote_host=192.168.0.12 remote_enable=1 remote_port=9000 remote_connect_back=0
+
+      # Configure a new server (PHPStorm -> Preferences -> Languages & Frameworks -> PHP -> Servers):
+      #   - Give a name to the new server
+      #   - Map HTML and PUBLIC folder
+
+      # Change the server name here:
+      - PHP_IDE_CONFIG=serverName=LaravelTDD
+    ports:
+      - "8034:80"
+    volumes:
+      - .:/var/www
+networks:
+  default:
+    external:
+      name: chaos_default
